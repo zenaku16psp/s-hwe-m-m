@@ -88,7 +88,7 @@ PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", "25"))
 AUTO_END_STREAM = getenv("AUTO_END_STREAM", "True").lower() == "true"
 
 # Cleanmode time after which bot will delete its old messages from chats
-CLEANMODE_DELETE_MINS = int(getenv("CLEANMODE_MINS", "5"))
+CLEANMODE_DELETE_MINS = int(getenv("CLEANMODE_MINS", "20"))
 
 SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "180"))
 SONG_DOWNLOAD_DURATION_LIMIT = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "2000"))
