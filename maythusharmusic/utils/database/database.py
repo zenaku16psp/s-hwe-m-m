@@ -2,7 +2,7 @@
 import random
 import string
 import time
-from typing import Dict, List, Union
+from typing import Dict, List, Union, Any
 
 from maythusharmusic import userbot
 from config import CLEANMODE_DELETE_MINS
@@ -66,8 +66,78 @@ mute = {}
 audio = {}
 video = {}
 
-afkdb = mongodb.afk
 
+
+# --- (Function (၂) - get_yt_cache) ---
+async def get_yt_cache(key: str) -> Union[dict, None]:
+    try:
+        cached_result = await ytcache_db.find_one({"key": key})
+        if cached_result:
+            return cached_result.get("details")
+    except Exception as e:
+        logger.error(f"Error getting YT cache for key '{key}': {e}")
+    return None
+
+# --- (Function (၃) - save_yt_cache) ---
+async def save_yt_cache(key: str, details: dict):
+    try:
+        await ytcache_db.update_one(
+            {"key": key},
+            {"$set": {"details": details}},
+            upsert=True
+        )
+    except Exception as e:
+        logger.error(f"Error saving YT cache for key '{key}': {e}")
+
+# --- (Function (၄) - get_cached_song_path) ---
+async def get_cached_song_path(video_id: str) -> Union[str, None]:
+    try:
+        cached_song = await songfiles_db.find_one({"video_id": video_id})
+        if cached_song:
+            return cached_song.get("file_path")
+    except Exception as e:
+        logger.error(f"Error getting song path cache for vid '{video_id}': {e}")
+    return None
+
+# --- (Function (၅) - save_cached_song_path) ---
+async def save_cached_song_path(video_id: str, file_path: str):
+    try:
+        await songfiles_db.update_one(
+            {"video_id": video_id},
+            {"$set": {"file_path": file_path}},
+            upsert=True
+        )
+    except Exception as e:
+        logger.error(f"Error saving song path cache for vid '{video_id}': {e}")
+
+# --- (Function (၆) - remove_cached_song_path) ---
+async def remove_cached_song_path(video_id: str):
+    try:
+        await songfiles_db.delete_one({"video_id": video_id})
+    except Exception as e:
+        logger.error(f"Error removing song path cache for vid '{video_id}': {e}")
+
+# --- (Function (၇) (အသစ်) - Get ALL Cache for Pre-loading) ---
+async def get_all_yt_cache() -> Dict[str, Any]:
+    """MongoDB မှ cache လုပ်ထားသော YouTube search results အားလုံးကို ယူသည်"""
+    all_cache: Dict[str, Any] = {}
+    try:
+        # filter မထည့်ဘဲ find() လုပ်ခြင်းဖြင့် document အားလုံးကို ယူပါ
+        async for document in ytcache_db.find({}):
+            key = document.get("key")
+            details = document.get("details")
+            if key and details:
+                all_cache[key] = details
+        
+        count = len(all_cache)
+        if count > 0:
+            logger.info(f"MongoDB မှ cache {count} ခုကို အောင်မြင်စွာ Pre-load လုပ်ပြီး။")
+        return all_cache
+    except Exception as e:
+        logger.error(f"Cache အားလုံးကို DB မှ ဆွဲထုတ်ရာတွင် အမှားဖြစ်ပွား: {e}")
+        return {} # Error ဖြစ်လျှင် အလွတ် dictionary ပြန်ပေး
+
+#________________________________________________________________#
 async def is_afk(user_id: int):
     """User သည် AFK ဖြစ်/မဖြစ် စစ်ဆေးသည်"""
     user = await afkdb.find_one({"user_id": user_id})
