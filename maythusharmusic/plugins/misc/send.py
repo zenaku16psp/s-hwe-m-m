@@ -6,7 +6,7 @@ from pyrogram.errors import FloodWait
 
 from maythusharmusic import app
 from config import OWNER_ID
-#from maythusharmusic.misc import SUDOERS
+from maythusharmusic.misc import SUDOERS
 from maythusharmusic.utils.database import (
     get_active_chats,
     get_authuser_names,
@@ -21,7 +21,7 @@ from config import adminlist
 IS_BROADCASTING = False
 
 
-@app.on_message(filters.command("send") & filters.user(OWNER_ID))
+@app.on_message(filters.command("send") & SUDOERS)
 @language
 async def braodcast_message(client, message, _):
     global IS_BROADCASTING
