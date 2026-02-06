@@ -13,7 +13,7 @@ from maythusharmusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
 # --- Clone Bot Function ကို Import လုပ်ခြင်း ---
-from maythusharmusic.plugins.bot.clone import restart_clones 
+#from maythusharmusic.plugins.bot.clone import restart_clones 
 #from maythusharmusic.core.cleanmode import clean_mode_task
 # -------------------------------------------
 
@@ -45,12 +45,12 @@ async def init():
     await pisces.start()
     
     # --- Clone Bot များကို စတင်ခြင်း ---
-    LOGGER("maythusharmusic").info("Clone Bot များကို စတင်နေပါသည်...")
-    try:
-        await restart_clones()
-        LOGGER("maythusharmusic").info("Clone Bots များ အောင်မြင်စွာ စတင်ပြီးပါပြီ။")
-    except Exception as e:
-        LOGGER("maythusharmusic").error(f"Clone Bots စတင်ရာတွင် အမှားရှိသည်: {e}")
+    #LOGGER("maythusharmusic").info("Clone Bot များကို စတင်နေပါသည်...")
+    #try:
+        #await restart_clones()
+        #LOGGER("maythusharmusic").info("Clone Bots များ အောင်မြင်စွာ စတင်ပြီးပါပြီ။")
+    #except Exception as e:
+        #LOGGER("maythusharmusic").error(f"Clone Bots စတင်ရာတွင် အမှားရှိသည်: {e}")
     # -------------------------------
 
     try:
