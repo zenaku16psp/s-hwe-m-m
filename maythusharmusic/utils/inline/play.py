@@ -67,13 +67,12 @@ def stream_markup_timer(_, chat_id, played, dur):
             )
         ],
         [
-            InlineKeyboardButton(text="စကားပြောမယ်", url="https://t.me/iwillsgoforwardsalone"),
-            InlineKeyboardButton(text="အဖီးလ်တစ်လိုင်း", url="https://t.me/everythingreset"),
+            InlineKeyboardButton(text="Owner", url="https://t.me/Julierbo2_151102"),
+            InlineKeyboardButton(text="Support", url="https://t.me/julierbo3_151102"),
         ],
-        [InlineKeyboardButton(text="Dᴇᴠᴇʟᴏᴘᴇʀ", url="https://t.me/iwillgoforwardsalone")],
+        [InlineKeyboardButton(text="စကားပြော", url="https://t.me/Myanmar_2002")],
     ]
     return buttons
-
 
 def stream_markup(_, chat_id):
     buttons = [
@@ -85,10 +84,10 @@ def stream_markup(_, chat_id):
             InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}"),
         ],
         [
-            InlineKeyboardButton(text="စကားပြောမယ်", url="https://t.me/iwillsgoforwardsalone"),
-            InlineKeyboardButton(text="အဖီးလ်တစ်လိုင်း", url="https://t.me/everythingreset"),
+            InlineKeyboardButton(text="Owner", url="https://t.me/Julierbo2_151102"),
+            InlineKeyboardButton(text="Support", url="https://t.me/julierbo3_151102"),
         ],
-        [InlineKeyboardButton(text="Dᴇᴠᴇʟᴏᴘᴇʀ", url="https://t.me/iwillgoforwardsalone")],
+        [InlineKeyboardButton(text="စကားပြော", url="https://t.me/Myanmar_2002")],
     ]
     return buttons
 
