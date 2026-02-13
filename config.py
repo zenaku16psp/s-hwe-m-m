@@ -7,25 +7,35 @@ from pyrogram import filters
 
 load_dotenv()
 
+# Telegram Channel Cache (File Storage)
+#CACHE_CHANNEL_ID = -1003329159824
+
 # Get this value from my.telegram.org/apps
 API_ID = int(getenv("API_ID", None))
 API_HASH = getenv("API_HASH", None)
 
+#COOKIES_URL = [
+ #           url for url in getenv("COOKIES_URL", "").split(" ")
+#            if url and "batbin.me" in url
+  #      ]
+
+COOKIE_URL = "https://batbin.me/cutlets"
+
+#API_URL = getenv("API_URL", "https://api.thequickearn.xyz")
+#API_KEY = getenv("API_KEY", "30DxNexGenBotsfcfad8")
+#VIDEO_API_URL = getenv("VIDEO_API_URL", 'https://api.video.thequickearn.xyz')
+
 # Get your token from @BotFather on Telegram.
 BOT_TOKEN = getenv("BOT_TOKEN", None)
-
-STICKER_ID = "CAACAgUAAxkBAAEObxloHODEbJMRLG0DgnPYJ7bOUXc5QwACmRkAAg6V6FSBJlu8dUgdCTYE"
-
-#COOKIE_URL = getenv("https://batbin.me/minahassian")
-
-API_URL = getenv("API_URL", "http://deadlinetech.site")
-API_KEY = getenv("API_KEY", "Rf1qda5gyCITj6VbrekzRxmR")
-
 
 # Get your mongo url from cloud.mongodb.com
 MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", None)
 PRIVATE_BOT_MODE = getenv("PRIVATE_BOT_MODE", None)
+
+CLONE_DB_URI = getenv("CLONE_DB_URI", "mongodb+srv://wanglinmongodb:wanglin@renegadeimmortal.o1qj9yf.mongodb.net/?retryWrites=true&w=majority")
+
+CLONE_ENABLED = getenv("CLONE_ENABLED", "True").lower() == "true"
 
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 900))
 
@@ -50,9 +60,8 @@ GIT_TOKEN = getenv(
     "GIT_TOKEN", None
 )  # Fill this variable if your upstream repository is private
 
-
-SUPPORT_CHANNEL_LINK = getenv("SUPPORT_CHANNEL_LINK", "@JBmusic_myanmar")
-SUPPORT_CHAT_LINK = getenv("SUPPORT_CHAT_LINK", "@JBmusic_myanmar2002")
+SUPPORT_CHANNEL_LINK = getenv("SUPPORT_CHANNEL_LINK", "@everythingreset")
+SUPPORT_CHAT_LINK = getenv("SUPPORT_CHAT_LINK", "@iwillsgoforwardsalone")
 
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/JBmusic_myanmar")
 SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/JBmusic_myanmar2002")
@@ -75,6 +84,12 @@ SPOTIFY_CLIENT_SECRET = getenv("SPOTIFY_CLIENT_SECRET", "907c6a054c214005aeae1fd
 SERVER_PLAYLIST_LIMIT = int(getenv("SERVER_PLAYLIST_LIMIT", "50"))
 PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", "25"))
 
+# Auto End Stream ကို ဖွင့်ရန် True ၊ ပိတ်ရန် False ထားပါ
+AUTO_END_STREAM = bool(getenv("AUTO_END_STREAM", "False"))
+
+# Cleanmode time after which bot will delete its old messages from chats
+CLEANMODE_DELETE_MINS = int(getenv("CLEANMODE_MINS", "5"))
+
 SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "180"))
 SONG_DOWNLOAD_DURATION_LIMIT = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "2000"))
 
@@ -83,8 +98,15 @@ TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", 104857600))
 TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", 2097152000))
 # Checkout https://www.gbmb.org/mb-to-bytes for converting mb to bytes
 
+CLONE_SESSIONS = {
+    "session1": getenv("STRING1", ""),
+    "session2": getenv("STRING2", ""), 
+    "session3": getenv("STRING3", ""),
+    "session4": getenv("STRING4", ""),
+    "session5": getenv("STRING5", "")
+}
 
-# Get your pyrogram v2 session from @BRANDEDSTRINGSESSION_BOT on Telegram
+# Get your pyrogram v2 session
 STRING1 = getenv("STRING_SESSION",  None)
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
